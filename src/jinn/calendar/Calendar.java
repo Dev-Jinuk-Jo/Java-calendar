@@ -1,7 +1,5 @@
 package jinn.calendar;
 
-import java.util.Scanner;
-
 public class Calendar {
 	
 	private final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -9,28 +7,21 @@ public class Calendar {
 	public int getMaxDaysOfMonth(int month) {
 		return MAX_DAYS[month - 1];
 	}
-	public static void main(String[] args) {
-		String PROMPT = "cal> ";
-		Scanner scanner = new Scanner(System.in);
-		Calendar cal = new Calendar();
+
+	
+	public void printCalendar(int year, int month) {
+		System.out.printf("    <%4d년 %3d월>\n", year, month);
+		System.out.println(" SU MO TU WE TH FR SA");
+		System.out.println("---------------------");
 		
-		int month = 1;
+		int maxDay = getMaxDaysOfMonth(month);
 		
-		while (true) {
-			System.out.println("달을 입력하세요");
-			System.out.print(PROMPT);
-			month = scanner.nextInt();
-			if (month == -1) {
-				break;
-			}
-			
-			if (month > 12) {
-				continue;
-			}
-			System.out.printf("%d월은 %d일까지 있습니다. \n", month, cal.getMaxDaysOfMonth(month));			
+		for(int i = 1; i <= maxDay; i++) {
+			System.out.printf("%3d", i);
+			if (i % 7 == 0)
+				System.out.println();
 		}
 		
-		System.out.println("Bye!");
-		scanner.close();					
+		System.out.println();
 	}
 }
