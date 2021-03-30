@@ -3,19 +3,34 @@ package jinn.calendar;
 import java.util.Scanner;
 
 public class Prompt {
-	
-	private final static String PROMPT="cal> ";
+		
+	public int parseDay(String week) {
+		if (week.equals("su")) {return 0;} 
+		else if (week.equals("mo")) {return 1;}
+		else if (week.equals("tu")) {return 2;}
+		else if (week.equals("we")) {return 3;}
+		else if (week.equals("th")) {return 4;}
+		else if (week.equals("fr")) {return 5;}
+		else if (week.equals("sa")) {return 6;}
+		else {return 0;}
+	}
 	
 	public void runPrompt() {
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
 		
 		int month = 1;
+		int year = 2021;
+		
 		
 		while (true) {
-			System.out.println("달을 입력하세요");
-			System.out.print(PROMPT);
+			System.out.println("년도를 입력하세요.");
+			System.out.print("YEAR> ");
+			year = scanner.nextInt();
+			System.out.println("달을 입력하세요.");
+			System.out.println("MONTH> ");
 			month = scanner.nextInt();
+			
 			if (month == -1) {
 				break;
 			}
@@ -23,7 +38,7 @@ public class Prompt {
 			if (month > 12) {
 				continue;
 			}
-			cal.printCalendar(2021, month);		
+			cal.printCalendar(year, month);		
 		}
 		
 		System.out.println("Bye!");
